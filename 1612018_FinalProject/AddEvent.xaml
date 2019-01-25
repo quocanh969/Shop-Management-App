@@ -1,0 +1,165 @@
+﻿<Window x:Class="_1612018_FinalProject.AddEvent"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:_1612018_FinalProject"
+        mc:Ignorable="d"
+       Title="Staff_info" Height="800" Width="800" ResizeMode="NoResize"
+        BorderThickness="3" BorderBrush="Black" Closed="Window_Closed"
+        WindowStartupLocation="CenterScreen" WindowStyle="None">
+    <Grid>       
+        <!-- icon minh họa -->
+        <Image Source="source/Icon/icon_promotion_e.png"
+               Margin="0,30,0,0"
+               VerticalAlignment="Top" HorizontalAlignment="Center"
+               Height="180" Width="180"/>
+
+        <!-- Error notice-->
+        <Label x:Name="ErrorNotice" FontSize="20" Foreground="Red" Content="*Error"
+               VerticalAlignment="Bottom" HorizontalAlignment="Right" Visibility="Hidden"
+               Margin="0,0,50,140"/>
+
+        <!-- body -->
+        <Grid Margin="0,220,0,0"
+              HorizontalAlignment="Center" VerticalAlignment="Top">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            
+            <!-- Tên chương trình khuyến mãi -->
+            <WrapPanel Grid.Row="0">
+                <materialDesign:PackIcon Kind="TickDecagram" Height="30" Width="30"
+                                     Margin="0,0,10,0" VerticalAlignment="Bottom"/>
+                <TextBox x:Name="txtBoxTenEvent"
+                     materialDesign:HintAssist.Hint="Tên chương trình khuyến mãi"
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                     FontSize="20" Height="50" Width="370"/>
+            </WrapPanel>
+            
+            <!-- Trạng thái có mở hay không-->
+            <WrapPanel Grid.Row="1" Margin="20,20,0,0">
+                <Label Content="Trạng thái: "
+                       VerticalContentAlignment="Center"
+                       FontSize="20" Width="100" Height="50"/>
+                <ToggleButton x:Name="CheckState" Margin="130,0,0,0" IsEnabled="True"/>
+            </WrapPanel>
+
+            <!-- ngày bắt đầu và kết thúc sự kiện khuyến mãi -->
+            <Grid Grid.Row="2" Margin="0,20,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="350"/>
+                    <ColumnDefinition Width="350"/>
+                </Grid.ColumnDefinitions>
+                <!-- Ngày bắt đầu event -->
+                <WrapPanel Grid.Column="0" Margin="20,0,0,0">
+                    <TextBox x:Name="dateStart" IsEnabled="False"
+                                 materialDesign:HintAssist.Hint="Ngày bắt đầu"                             
+                                 FontSize="20" Height="50" Width="200"/>
+                    <materialDesign:PopupBox x:Name="ngayBDPopUp"
+                                                PlacementMode="BottomAndAlignRightEdges" StaysOpen="False"
+                                                Closed="ngayBDPopUp_Closed">
+                        <materialDesign:PopupBox.ToggleContent>
+                            <materialDesign:PackIcon Kind="Calendar" Foreground="Black"
+                                                 Height="50" Width="40"/>
+                        </materialDesign:PopupBox.ToggleContent>
+                        <Calendar x:Name="StartCalendar" Grid.Row="0"/>
+                    </materialDesign:PopupBox>
+                </WrapPanel>
+
+                <!-- Ngày kết thúc event -->
+                <WrapPanel Grid.Column="1" Margin="20,0,0,0">
+                    <TextBox x:Name="dateEnd" IsEnabled="False"
+                                 materialDesign:HintAssist.Hint="Ngày kết thúc"                             
+                                 FontSize="20" Height="50" Width="200"/>
+                    <materialDesign:PopupBox x:Name="ngayKTPopUp"
+                                                PlacementMode="BottomAndAlignRightEdges" StaysOpen="False"
+                                                Closed="ngayKTPopUp_Closed">
+                        <materialDesign:PopupBox.ToggleContent>
+                            <materialDesign:PackIcon Kind="Calendar" Foreground="Black"
+                                                 Height="50" Width="40"/>
+                        </materialDesign:PopupBox.ToggleContent>
+                        <Calendar x:Name="EndCalendar" Grid.Row="0"/>
+                    </materialDesign:PopupBox>
+                </WrapPanel>
+            </Grid>
+
+            <!-- Số lượng cần mua -->
+            <Grid Grid.Row="3">
+                <WrapPanel Grid.Column="0" Margin="0,20,0,0">
+                    <materialDesign:PackIcon Kind="Numbers" VerticalAlignment="Bottom"
+                                         Width="40" Height="40"    
+                                         Margin="5,0,10,3"/>
+                    <TextBox x:Name="txtBoxSoLuong" FontSize="20" Height="50" Width="300"
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                         materialDesign:HintAssist.Hint="Số lượng cần mua để giảm giá"/>
+                </WrapPanel>
+                <Label x:Name="WrongValueNum"
+                       VerticalAlignment="Bottom" HorizontalAlignment="Right"
+                   Margin="0,75,0,0" Visibility="Hidden"
+                   Content="*Số lượng nhập vào bị sai" Foreground="Red" FontSize="20"/>
+            </Grid>
+
+            <!-- % giảm giá -->
+            <Grid Grid.Row="4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <WrapPanel Grid.Column="0" Margin="0,20,0,0">
+                    <materialDesign:PackIcon Kind="MegaphoneOutline" VerticalAlignment="Bottom"
+                                         Width="40" Height="40"    
+                                         Margin="5,0,10,3"/>
+                    <TextBox x:Name="txtBoxPhanTram" FontSize="20" Height="50" Width="180"
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                         materialDesign:HintAssist.Hint="Phần trăm giảm giá"/>
+                    <Label Content="%" Height="50" FontSize="20" VerticalContentAlignment="Bottom"/>
+                </WrapPanel>
+                <Label x:Name="WrongValue"
+                       VerticalAlignment="Bottom" HorizontalAlignment="Right"
+                   Margin="0,75,0,0" Visibility="Hidden"
+                   Content="*Số lượng nhập vào bị sai" Foreground="Red" FontSize="20"/>
+
+                <!-- Ghi chú -->
+                <materialDesign:PopupBox x:Name="Note" Grid.Column="1" HorizontalAlignment="Center"                                             
+                                                PlacementMode="BottomAndAlignRightEdges" StaysOpen="True">
+                    <materialDesign:PopupBox.ToggleContent>
+                        <Label x:Name="btnGhiChu"
+                                    Content="Ghi chú" HorizontalContentAlignment="Center"
+                                    Foreground="White" Background="#FF484ED4"
+                                    FontSize ="25" Height="50" Width="150"/>
+                    </materialDesign:PopupBox.ToggleContent>
+                    <TextBox x:Name="txtBoxGhiChu" Margin="5"
+                                 materialDesign:HintAssist.Hint="Ghi chú" TextWrapping="Wrap"
+                                 VerticalScrollBarVisibility="Auto"
+                                 Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}"
+                                 Height="100" Width="500" FontSize="20"/>
+                </materialDesign:PopupBox>
+            </Grid>
+        </Grid>
+        
+        <!-- Màn che -->
+        <Rectangle x:Name="Man_che" Fill="Transparent"
+                   Margin="0,220,0,180" Visibility="Hidden"
+                   VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+
+        <!-- button OK -->
+        <Button x:Name="btnOK" Click="btnOK_Click"
+                Margin="0,0,180,50"
+                VerticalAlignment="Bottom" HorizontalAlignment="Right"
+                Content="OK" Background="OrangeRed"
+                Width="150" Height="50" FontSize="30"/>
+        
+        <!-- button Cancel -->
+        <Button x:Name="btnCancel" Click="btnCancel_Click"
+                Margin="180,0,0,50"
+                VerticalAlignment="Bottom" HorizontalAlignment="Left"
+                Content="CANCEL" Background="#FF484ED4"
+                Width="150" Height="50" FontSize="30"/>
+    </Grid>
+</Window>

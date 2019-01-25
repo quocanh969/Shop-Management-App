@@ -1,0 +1,66 @@
+﻿<Window x:Class="_1612018_FinalProject.Login"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:_1612018_FinalProject"
+        mc:Ignorable="d" KeyDown="Window_KeyDown"
+         Title="Login" Height="600" Width="400" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen" MouseDown="Window_MouseDown" Icon="source/LoginScreen/icon_user_login.png" WindowStyle="None">
+    <Grid>
+
+        <!-- Login image -->
+        <Image Source="source/LoginScreen/icon_user_login.png" Width="100" Height="100"
+               Margin="0,50,0,0"
+               VerticalAlignment="Top" HorizontalAlignment="Center"/>
+
+        <!--   Rectangle dùng trang trí     -->
+        <Rectangle Height="300" VerticalAlignment="Top" Panel.ZIndex="-2">
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF0928B8" Offset="0"/>
+                    <GradientStop Color="#FF945AB6" Offset="1"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+
+        <!-- Login info -->
+        <Border BorderThickness="1" BorderBrush="Black" VerticalAlignment="Center" HorizontalAlignment="Center" Background="White" CornerRadius="10">
+            <WrapPanel x:Name="Login_panel"  Orientation="Vertical" Background="White" Margin="20,20,20,10">
+                <TextBox x:Name="txtBox_UserName"
+                         materialDesign:HintAssist.Hint="User Name"
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                         Width="300" FontSize="15"/>
+                <PasswordBox x:Name="passBox_Password"
+                             materialDesign:HintAssist.Hint="Password" Margin="0,20,0,0"
+                             Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"
+                             Width="300" FontSize="15"/>
+                <TextBlock x:Name="txtBox_notice" FontSize="20" Foreground="Red" HorizontalAlignment="Right" Visibility="Hidden"/>
+            </WrapPanel>
+        </Border>
+
+        <!-- Button -->
+        <WrapPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,270,0,0">
+            <!-- button OK -->
+            <Button Style="{StaticResource MaterialDesignRaisedDarkButton}" Width="150" Height="50"
+                    Margin="0,0,20,0" FontSize="20" Click="OK_Click"
+                    BorderBrush="{x:Null}"  Background="OrangeRed">
+
+                _Login
+            </Button>
+            <!-- button Cancel -->
+            <Button Style="{StaticResource MaterialDesignRaisedDarkButton}" Width="150" Height="50"
+                    Margin="20,0,0,0" FontSize="20" Click="Cancel_Click"
+                    BorderBrush="{x:Null}">
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF0928B8" Offset="0"/>
+                        <GradientStop Color="#FF945AB6" Offset="1"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+                _Cancel
+            </Button>
+        </WrapPanel>
+
+    </Grid>
+</Window>

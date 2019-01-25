@@ -1,0 +1,279 @@
+﻿<UserControl x:Class="_1612018_FinalProject.Ban_hang_truc_tiep"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"             
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:_1612018_FinalProject"
+             mc:Ignorable="d" Background="White"
+             d:DesignHeight="740" d:DesignWidth="1060">
+    <Grid>
+        <Label x:Name="lblHeader"
+               Content="HÓA ĐƠN" Margin="0,20,0,0" FontSize="50"
+               VerticalAlignment="Top" HorizontalAlignment="Center" FontFamily="Segoe UI Black"/>
+        
+        <!-- Label báo lỗi -->
+        <Label x:Name="ErrorNotice" Grid.Row="2" VerticalAlignment="Top" HorizontalAlignment="Right"
+                            Margin="0,60,20,0" Visibility="Hidden"
+                            Content="*Số lượng nhập vào bị sai" Foreground="Red" FontSize="20"/>
+        
+        <!-- Làm mới hợp đồng -->
+        <Button x:Name="btnRefresh" Width="50" Height="50"
+                Background="Transparent" BorderThickness="0"
+                Margin="20,40,0,0" Click="btnRefresh_Click"
+                VerticalAlignment="Top" HorizontalAlignment="Left">
+            <materialDesign:PackIcon Kind="Refresh" Foreground="Black"
+                                     Margin="-10"
+                                     Height="40" Width="40"/>
+        </Button>
+
+        <Border VerticalAlignment="Top" HorizontalAlignment="Center"
+              Width="1020" BorderThickness="2" BorderBrush="Black"
+              Margin="00,100,0,0">
+            <Grid Margin="30">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <!-- Loại sản phẩm và mã loại -->
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="500"/>
+                        <ColumnDefinition Width="500"/>
+                    </Grid.ColumnDefinitions>
+                    <!-- Loại sản phẩm -->
+                    <WrapPanel Grid.Column="0">
+                        <materialDesign:PackIcon Kind="Category" VerticalAlignment="Bottom"
+                                         Width="30" Height="30"    
+                                         Margin="5,0,20,3"/>
+                        <ComboBox materialDesign:HintAssist.Hint="Loại sản phẩm" 
+                             Height="50" Width="300"                       
+                             x:Name="cmbLoai"
+                            Style="{StaticResource MaterialDesignFloatingHintComboBox}" LostFocus="cmbLoai_LostFocus">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock FontSize="20" Height="50" Text="{Binding TenLoai}"/>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                    </WrapPanel>
+                    <TextBox x:Name="txtBoxMaLoai" Grid.Column="1"
+                         HorizontalAlignment="Left" IsEnabled="False"
+                         FontSize="20" Height="50" Width="300"
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                         materialDesign:HintAssist.Hint="Mã loại"/>
+                </Grid>
+
+                <!-- Tên sản phẩm và mã sản phẩm -->
+                <Grid Grid.Row="1" Margin="0,20,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="500"/>
+                        <ColumnDefinition Width="500"/>
+                    </Grid.ColumnDefinitions>
+                    <WrapPanel Grid.Column="0">
+                        <materialDesign:PackIcon Kind="TrolleyPlus" VerticalAlignment="Bottom"
+                                         Width="30" Height="30"    
+                                         Margin="5,0,20,3"/>
+                        <ComboBox materialDesign:HintAssist.Hint="Tên sản phẩm"
+                          x:Name="cmbTenSP" LostFocus="cmbTenSP_LostFocus"
+                          Height="50" Width="300" IsEnabled="False"
+                          Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock FontSize="20" Height="50" Text="{Binding TenSP}"/>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+
+                    </WrapPanel>
+                    <TextBox x:Name="txtBoxMaSP" Grid.Column="1"
+                         HorizontalAlignment="Left" IsEnabled="False"
+                         FontSize="20" Height="50" Width="300"
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                         materialDesign:HintAssist.Hint="Mã sản phẩm"/>
+                </Grid>
+
+                <!-- Sự kiện -->
+                <Grid Grid.Row="2" HorizontalAlignment="Left" Margin="0,20,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="500"/>
+                        <ColumnDefinition Width="500"/>
+                    </Grid.ColumnDefinitions>
+                    <!-- Tên sự kiện -->
+                    <WrapPanel Grid.Column="0">                        
+                        <materialDesign:PackIcon Kind="MegaphoneOutline" Width="30" Height="30"                                                 
+                                                 VerticalAlignment="Bottom" Margin="0,0,10,0"/>                        
+                        <ComboBox materialDesign:HintAssist.Hint="Tên sự kiện"                                   
+                                  Height="50" Width="300" FontSize="20"   
+                                  x:Name="cmbKhuyenMai"                               
+                                  Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock FontSize="20" Height="50" Text="{Binding TenKM}"/>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                    </WrapPanel>
+
+                    <!-- Số tiền được giảm -->
+                    <WrapPanel Grid.Column="1">
+                        <materialDesign:PackIcon Kind="TickDecagram" Width="30" Height="30"
+                                                 VerticalAlignment="Bottom" Margin="0,0,10,0"/>
+                        <TextBox x:Name="txtBoxTienGiam"
+                             materialDesign:HintAssist.Hint="Số tiền được giảm"
+                             IsEnabled="False" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                             FontSize="20" Height="50" Width="300"/>
+                    </WrapPanel>
+                </Grid>
+
+                <!-- Đơn giá và ngày làm hóa đơn -->
+                <Grid Grid.Row="3" Margin="0,20,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="500"/>
+                        <ColumnDefinition Width="500"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Đơn giá -->
+                    <WrapPanel Grid.Column="0">
+                        <materialDesign:PackIcon Kind="Cash" VerticalAlignment="Bottom"
+                                         Width="30" Height="30"    
+                                         Margin="5,0,20,3"/>
+                        <TextBox x:Name="txtBoxDonGia" Height="50" Width="300" FontSize="20"
+                             materialDesign:HintAssist.Hint="Đơn giá"
+                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                               Text="" IsEnabled="False"/>
+                    </WrapPanel>
+
+                    <!-- Ngày làm hóa đơn -->
+                    <WrapPanel Grid.Column="1">
+                        <TextBox x:Name="datePicking" IsEnabled="False"
+                             materialDesign:HintAssist.Hint="Ngày làm hóa đơn"                             
+                             FontSize="20" Height="50" Width="300"/>
+                        <materialDesign:PopupBox PlacementMode="BottomAndAlignRightEdges" StaysOpen="False" Closed="PopupBox_Closed"
+                                             >
+                            <materialDesign:PopupBox.ToggleContent>
+                                <materialDesign:PackIcon Kind="Calendar" Foreground="Black"
+                                             Height="50" Width="40"/>
+                            </materialDesign:PopupBox.ToggleContent>
+
+                            <Calendar x:Name="Calendar" Grid.Row="0"/>
+
+
+                        </materialDesign:PopupBox>
+                    </WrapPanel>
+                </Grid>
+
+                <!-- Số lượng sản phẩm -->
+                <Grid Grid.Row="4">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="500"/>
+                        <ColumnDefinition Width="450"/>
+                    </Grid.ColumnDefinitions>
+                    <!-- Số lượng -->
+                    <WrapPanel Grid.Column="0" Margin="0,20,0,0">
+                        <materialDesign:PackIcon Kind="Numbers" VerticalAlignment="Bottom"
+                                         Width="40" Height="40"    
+                                         Margin="5,0,10,3"/>
+                        <TextBox x:Name="txtBoxSoLuong" FontSize="20" Height="50" Width="300"
+                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                         materialDesign:HintAssist.Hint="Số lượng"/>
+                    </WrapPanel>                    
+                    <!-- Hình thúc thanh toán -->
+                    <WrapPanel Grid.Column="1" Margin="0,20,0,0">
+                        <materialDesign:PackIcon Kind="Payment" VerticalAlignment="Bottom"
+                                             Width="40" Height="40"    
+                                             Margin="0,0,20,0"/>
+                        <ComboBox materialDesign:HintAssist.Hint="Loại sản phẩm" 
+                              Height="50" Width="300" FontSize="20"                       
+                              IsEditable="True" x:Name="cmbHinhThucThanhToan"
+                              Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                            <ComboBoxItem IsSelected="True">Thanh toán bằng thẻ</ComboBoxItem>
+                            <ComboBoxItem >Thanh toán trực tiếp</ComboBoxItem>
+                        </ComboBox>
+                    </WrapPanel>
+                </Grid>
+
+                <!-- Thành tiền và ghi chú -->
+                <Grid Grid.Row="5" Margin="0,20,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="500"/>
+                        <ColumnDefinition Width="500"/>
+                    </Grid.ColumnDefinitions>
+                    <!-- Thành tiền -->
+                    <WrapPanel Grid.Column="0">
+                        <materialDesign:PackIcon Kind="SquareIncCash" VerticalAlignment="Bottom"
+                                         Width="40" Height="40"    
+                                         Margin="5,0,10,3"/>
+                        <TextBox x:Name="txtBoxThanhTien" FontSize="20" Height="50" Width="300"
+                             IsEnabled="False"
+                            materialDesign:HintAssist.Hint="Thành tiền"
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                    </WrapPanel>                    
+                    
+                    <!-- Ghi chú -->
+                    <materialDesign:PopupBox x:Name="Note" Grid.Column="1" HorizontalAlignment="Center"                                             
+                                                PlacementMode="BottomAndAlignRightEdges" StaysOpen="True">
+                        <materialDesign:PopupBox.ToggleContent>
+                            <Label x:Name="btnGhiChu"
+                                    Content="Ghi chú" HorizontalContentAlignment="Center"
+                                    Foreground="White" Background="#FF484ED4"
+                                    FontSize ="25" Height="50" Width="150"/>
+                        </materialDesign:PopupBox.ToggleContent>
+                        <TextBox x:Name="txtBoxGhiChu" Margin="5"
+                                 materialDesign:HintAssist.Hint="Ghi chú" TextWrapping="Wrap"
+                                 VerticalScrollBarVisibility="Auto"
+                                 Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}"
+                                 Height="100" Width="500" FontSize="20"/>
+                    </materialDesign:PopupBox>
+                </Grid>
+            </Grid>
+        </Border>
+
+        <Grid x:Name="Nhap_Thanh" Margin="0,0,0,20" Width="500" Height="50" VerticalAlignment="Bottom" HorizontalAlignment="Center">
+            <!-- button thanh toán -->
+            <Button Content="Thanh toán"
+                x:Name="btnThanhToan" Click="btnThanhToan_Click" HorizontalAlignment="Right"
+                Width="200" Height="50" FontSize="25"
+                Background="OrangeRed" Foreground="White"/>
+
+            <!-- button hóa đơn -->
+            <Button Content="Nhập hóa đơn"
+                x:Name="btnNhapHD" Click="btnNhapHD_Click"
+                HorizontalAlignment="Left"
+                Width="200" Height="50" FontSize="25"
+                Background="LightGray" Foreground="Black"/>
+        </Grid>
+
+        <!-- Giỏ hàng -->        
+        <Button x:Name="btnGioHang" Width="50" Height="50"
+                Background="Transparent" BorderThickness="0"
+                Margin="0,40,20,0" Click="btnGioHang_Click"
+                VerticalAlignment="Top" HorizontalAlignment="Right">
+            <materialDesign:PackIcon Kind="Trolley" Foreground="Black"
+                                     Margin="-10"
+                                     Height="40" Width="40"/>
+        </Button>
+        
+        <!-- Màn che -->
+        <Grid x:Name="Man_che" Visibility="Hidden">
+            <Rectangle VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Fill="Transparent"
+                       Margin="0,100,0,0"/>
+            <Button x:Name="btnNhap_vao_data" Background="Transparent" BorderThickness="2" BorderBrush="Black"
+                Width="220" Height="50" Content="Kết thúc mua hàng" Foreground="Black"
+                FontSize="20" Click="btnNhap_vao_data_Click"
+                VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,20"/>
+            <Button x:Name="btnQuay_lai" Background="Transparent" BorderThickness="2" BorderBrush="Black"
+                Width="200" Height="50" Content="Quay lại" Foreground="Black"
+                FontSize="20" Click="btnQuay_lai_Click"
+                VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="100,0,0,20"/>
+            <Button x:Name="btnTiepTuc" Background="Transparent" BorderThickness="2" BorderBrush="Black"
+                Width="200" Height="50" Content="Đặt vào giỏ hàng" Foreground="Black"
+                FontSize="20" Click="btnTiepTuc_Click"
+                VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,100,20"/>
+        </Grid>
+    </Grid>
+</UserControl>

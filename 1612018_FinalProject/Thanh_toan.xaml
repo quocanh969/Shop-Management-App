@@ -1,0 +1,173 @@
+﻿<UserControl x:Class="_1612018_FinalProject.Thanh_toan"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:_1612018_FinalProject"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" Background="White"
+             d:DesignHeight="740" d:DesignWidth="1060">
+    <Grid>
+        <!-- Các Radio button -->
+        <Grid VerticalAlignment="Top" HorizontalAlignment="Center"
+              Height="40" Margin="0,30,0,0">
+            <!-- lựa chọn thời điểm -->
+            <RadioButton x:Name="Truc_tiep" Content="Bán trực tiếp"
+                                 Margin="0,0,0,10" Checked="Truc_tiep_Checked"
+                                 FontSize="20" VerticalContentAlignment="Center"/>
+            <RadioButton x:Name="Dat_hang" Content="Đặt hàng" Margin="415,0,0,10"
+                                 Checked="Dat_hang_Checked"
+                                  FontSize="20" VerticalContentAlignment="Center"/>
+            
+            
+        </Grid>
+
+        <!-- Button refresh -->
+        <Button x:Name="btnRefresh" Width="50" Height="50"
+                Background="Transparent" BorderThickness="0"
+                Margin="10,20,0,0" Click="btnRefresh_Click"
+                VerticalAlignment="Top" HorizontalAlignment="Left">
+            <materialDesign:PackIcon Kind="Refresh" Foreground="Black"
+                                     Margin="-10"
+                                     Height="40" Width="40"/>
+        </Button>
+
+        <!-- data grid hóa đợn bán hàng trực tiếp -->        
+        <Grid x:Name="GridTrucTiep" Visibility="Hidden"
+              HorizontalAlignment="Center" VerticalAlignment="Stretch"
+              Margin="0,100,0,20">
+            <!-- Data grid view -->
+            <DataGrid x:Name="dataGridBanHangTrucTiep"            
+                  CanUserSortColumns="True" Margin="0,0,0,80"
+                  CanUserAddRows="False" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <!-- Mã hợp đồng -->
+                    <DataGridTextColumn Width="120"
+                    Binding="{Binding MaHD}" Header="Mã hợp đồng" IsReadOnly="True"
+                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
+
+                    <!-- Mã sản phẩm -->
+                    <DataGridTextColumn Width="80"
+                    Binding="{Binding MaSP}" Header="Mã SP" IsReadOnly="True"
+                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
+
+                    <!-- Loại sản phẩm -->
+                    <DataGridTextColumn Width="110"
+                                    Binding="{Binding MaLoai}" Header="Loại sản phẩm" IsReadOnly="True"                              
+                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
+
+                    <!-- Số lượng -->
+                    <DataGridTextColumn Width="80"
+                                    Binding="{Binding SoLuong}" Header="Số lượng"  IsReadOnly="True"      
+                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
+
+                    <!-- Tiền thu -->
+                    <DataGridTextColumn Width="130"
+                                    Binding="{Binding TienThu}" Header="Tiền thu (USD)"  IsReadOnly="True"                                
+                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
+
+                    <!-- Ngày nhập hàng -->
+                    <DataGridTextColumn Binding="{Binding NgayLapHD, StringFormat=\{0:dd/MM/yyyy\}}" Header="Ngày lập HĐ" HeaderStringFormat="d"                              
+                                     IsReadOnly="True" Width="125"
+                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" >
+
+                    </DataGridTextColumn>
+
+                    <!-- Hình thức -->
+                    <DataGridTextColumn Width="130"
+                                    Binding="{Binding HinhThuc}" Header="Hình thức"  IsReadOnly="True"                                
+                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
+                </DataGrid.Columns>
+                <DataGrid.RowDetailsTemplate>
+                    <DataTemplate>
+                        <WrapPanel>
+                            <Label Content="Ghi chú: " FontSize="20"/>
+                            <TextBlock Text="{Binding GhiChu}" FontSize="20" Margin="5,0,0,0"/>
+                        </WrapPanel>
+                    </DataTemplate>
+                </DataGrid.RowDetailsTemplate>
+            </DataGrid>
+        </Grid>
+
+        <!-- data grid hóa đợn đặt hàng -->
+        <Grid x:Name="GridDatHang" Visibility="Hidden"
+              HorizontalAlignment="Center" VerticalAlignment="Stretch"
+              Margin="0,100,0,20">
+            <!-- Data grid view -->
+            <DataGrid x:Name="dataGridDatHang" SelectedCellsChanged="dataGridDatHang_SelectedCellsChanged"      
+                  CanUserSortColumns="True" Margin="0,0,0,80"
+                  CanUserAddRows="False" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+
+                    <!-- Mã hợp đồng -->
+                    <DataGridTextColumn Width="120"
+                    Binding="{Binding MaDH}" Header="Mã hợp đồng" IsReadOnly="True"
+                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
+
+                    <!-- Mã sản phẩm -->
+                    <DataGridTextColumn Width="80"
+                    Binding="{Binding MaSP}" Header="Mã SP" IsReadOnly="True"
+                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
+
+                    <!-- Loại sản phẩm -->
+                    <DataGridTextColumn Width="150"
+                                    Binding="{Binding TenKH}" Header="Tên khách hàng" IsReadOnly="True"                              
+                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
+
+                    <!-- Ngày đặt hàng -->
+                    <DataGridTextColumn Binding="{Binding NgayDat, StringFormat=\{0:dd/MM/yyyy\}}" Header="Ngày đặt hàng" HeaderStringFormat="d"                              
+                                     IsReadOnly="True" Width="125"
+                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" >
+                    </DataGridTextColumn>
+
+                    <!-- Ngày nhận hàng -->
+                    <DataGridTextColumn Binding="{Binding NgayNhan, StringFormat=\{0:dd/MM/yyyy\}}" Header="Ngày nhận hàng" HeaderStringFormat="d"                              
+                                     IsReadOnly="True" Width="125"
+                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" >
+                    </DataGridTextColumn>
+
+                    <!-- Hình thức -->
+                    <DataGridTextColumn Width="130"
+                                    Binding="{Binding HinhThuc}" Header="Hình thức"  IsReadOnly="True"                                
+                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
+
+
+                </DataGrid.Columns>
+                <DataGrid.RowDetailsTemplate>
+                    <DataTemplate>
+                        <WrapPanel Orientation="Vertical"  Margin="10">
+                            <!-- Số lượng -->
+                            <WrapPanel>
+                                <Label Content="Số lượng: " FontSize="20"/>
+                                <TextBlock Text="{Binding SoLuong}" FontSize="20" Margin="5,0,0,0"/>
+                            </WrapPanel>
+                            <!-- Số điện thoại -->
+                            <WrapPanel>
+                                <Label Content="Số điện thoại: " FontSize="20"/>
+                                <TextBlock Text="{Binding Sdt}" FontSize="20" Margin="5,0,0,0"/>
+                            </WrapPanel>
+                            <!-- Địa chỉ -->
+                            <WrapPanel>
+                                <Label Content="Địa chỉ: " FontSize="20"/>
+                                <TextBlock Text="{Binding DiaChi}" Margin="5,0,0,0"/>
+                            </WrapPanel>
+                            <!-- Tiền thu -->
+                            <WrapPanel>
+                                <Label Content="Tiền thu: " FontSize="20"/>
+                                <TextBlock Text="{Binding TienThu}" Margin="5,0,0,0"/>
+                            </WrapPanel>
+                            <!-- Trả trước -->
+                            <WrapPanel>
+                                <Label Content="Trả trước: " FontSize="20"/>
+                                <TextBlock Text="{Binding TraTruoc}" Margin="5,0,0,0"/>
+                            </WrapPanel>
+                             <!-- Button đã thanh toán -->
+                            <Button x:Name="btnDaThanhToan" Content="Đã thanh toán" Width="150" Height="50"
+                                    Click="btnDaThanhToan_Click"/>
+                        </WrapPanel>
+                    </DataTemplate>
+                </DataGrid.RowDetailsTemplate>
+            </DataGrid>
+        </Grid>
+    </Grid>
+</UserControl>

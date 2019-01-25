@@ -1,0 +1,183 @@
+﻿<Window x:Class="_1612018_FinalProject.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:usc="clr-namespace:_1612018_FinalProject"
+        xmlns:local="clr-namespace:_1612018_FinalProject"
+        mc:Ignorable="d"
+        Background="#0984e3" Height="900" Width="1300" MinHeight="850" MinWidth="1300"
+        Title="Clothes Shop" Icon="source/LoginScreen/white_icon.png" WindowStartupLocation="CenterScreen" Closed="Window_Closed" WindowState="Maximized">
+
+    <Grid>        
+        <!-- Header -->
+        <Image x:Name="LogoShop"
+               Source="source/Icon/icon_store.png"
+               Height="80" Width="80" Margin="20,15,0,0"
+               VerticalAlignment="Top" HorizontalAlignment="Left"/>
+        <TextBlock Text="CLOTHES SHOP"
+               Margin="0,15,0,0" TextDecorations="Underline"
+               Foreground="White" FontSize="55" FontFamily="Arial Black"
+               VerticalAlignment="Top" HorizontalAlignment="Center"/>
+        <Label x:Name="lblScreenName" Margin="0,70,0,0"               
+               Foreground="White" FontSize="25" Content="Hệ thống quản lý hàng hóa"
+               VerticalAlignment="Top" HorizontalAlignment="Center" FontFamily="Segoe UI Black"/>
+        <StackPanel x:Name="Acount_setting" Orientation="Horizontal"
+                   Margin="0,30,10,0"
+                   VerticalAlignment="Top" HorizontalAlignment="Right">
+            <TextBlock x:Name="txtBox_user" Text="Admin" Foreground="White" FontSize="30"
+                       Margin="0,0,10,0"
+                       VerticalAlignment="Bottom"/>
+            <materialDesign:PopupBox PlacementMode="BottomAndAlignRightEdges" StaysOpen="False">
+                <materialDesign:PopupBox.ToggleContent>
+                    <materialDesign:PackIcon Kind="User" Foreground="White"
+                                             Height="50" Width="50"/>
+                </materialDesign:PopupBox.ToggleContent>
+                <StackPanel>
+                    <Button x:Name="btnSetting" Content="Thông tin cá nhân" BorderThickness="0"
+                            HorizontalContentAlignment="Left"
+                            Background="{x:Null}" Foreground="Black" Click="btnSetting_Click"
+                            Style="{StaticResource MaterialDesignRaisedButton}"/>
+                    <Button x:Name="btnLog_out" Content="Đăng xuất" BorderThickness="0"
+                            HorizontalContentAlignment="Left"
+                            Background="{x:Null}" Foreground="Black" Click="btnLog_out_Click"
+                            Style="{StaticResource MaterialDesignRaisedButton}"/>
+                </StackPanel>
+            </materialDesign:PopupBox>
+        </StackPanel>
+                
+        <!-- Menu -->
+        <StackPanel x:Name="Toolbar"
+                   Margin="0,110,0,0" Background="White" Width="230"
+                   Orientation="Vertical"
+                   VerticalAlignment="Stretch" HorizontalAlignment="Left">
+            <Button x:Name="btnSystem" Background="#0984e3"
+                    Margin="10" Width="210" Height="80"  Click="btnSystem_Click"
+                    Style="{StaticResource MaterialDesignRaisedAccentButton}"
+                    materialDesign:RippleAssist.Feedback="#DD000000" BorderBrush="{x:Null}">
+                <Grid Width="210" Height="80" Margin="-15,-5,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="60"/>
+                        <ColumnDefinition Width="150"/>
+                    </Grid.ColumnDefinitions>
+                   <!-- <materialDesign:PackIcon Kind="HomeVariant" Grid.Column="0"
+                                             VerticalAlignment="Center" Margin="5"
+                                             Foreground="White" Width="50" Height="50"/> -->
+                    <Image Source="source/Icon/icon_clothes.png" Grid.Column="0"/>
+                    <TextBlock Grid.Column="1" Text="Sản phẩm"
+                               VerticalAlignment="Center" Margin="10,0,0,0"
+                               FontSize="25" Foreground="White"/>
+                </Grid>
+            </Button>
+
+            <Button x:Name="btnSell" Background="#FF6FB28D"
+                    Margin="10" Width="210" Height="80" Click="btnSell_Click"
+                    Style="{StaticResource MaterialDesignRaisedAccentButton}"
+                    materialDesign:RippleAssist.Feedback="#DD000000" BorderBrush="{x:Null}">
+                <Grid Width="210" Height="80" Margin="-15,-5,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="60"/>
+                        <ColumnDefinition Width="150"/>
+                    </Grid.ColumnDefinitions>
+                    <!--<materialDesign:PackIcon Kind="Trolley" Grid.Column="0"
+                                             VerticalAlignment="Center" Margin="5"
+                                             Foreground="White" Width="50" Height="50"/> -->
+                    <Image Source="source/Icon/icon_shopping.png" Grid.Column="0"/>
+                    <TextBlock Grid.Column="1" Text="Bán hàng"
+                               VerticalAlignment="Center" Margin="10,0,0,0"
+                               FontSize="25" Foreground="White"/>
+                </Grid>
+            </Button>
+
+            <Button x:Name="btnImport" Background="#FF484ED4"
+                    Margin="10" Width="210" Height="80" Click="btnImport_Click"
+                    Style="{StaticResource MaterialDesignRaisedAccentButton}"
+                    materialDesign:RippleAssist.Feedback="#DD000000" BorderBrush="{x:Null}" >
+                <Grid Width="210" Height="80" Margin="-15,-5,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="60"/>
+                        <ColumnDefinition Width="150"/>
+                    </Grid.ColumnDefinitions>
+                    <!-- <materialDesign:PackIcon Kind="Umbrella" Grid.Column="0"
+                                             VerticalAlignment="Center" Margin="5"
+                                             Foreground="White" Width="50" Height="50"/> -->
+                    <Image Source="source/Icon/icons-umbrella.png" Grid.Column="0"/>
+                    <TextBlock Grid.Column="1" Text="Nhập hàng"
+                               VerticalAlignment="Center" Margin="0,0,0,0"
+                               FontSize="25" Foreground="White"/>
+                </Grid>
+            </Button>
+
+            <Button x:Name="btnStatistic" Background="#FF34CDB8"
+                    Margin="10" Width="210" Height="80" Click="btnStatistic_Click"
+                    Style="{StaticResource MaterialDesignRaisedAccentButton}"
+                    materialDesign:RippleAssist.Feedback="#DD000000" BorderBrush="{x:Null}">
+                <Grid Width="210" Height="80" Margin="-15,-5,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="60"/>
+                        <ColumnDefinition Width="150"/>
+                    </Grid.ColumnDefinitions>
+                    <!-- <materialDesign:PackIcon Kind="SignalCellular3" Grid.Column="0"
+                                             VerticalAlignment="Center" Margin="5"
+                                             Foreground="White" Width="50" Height="50"/> -->
+                    <Image Source="source/Icon/icon_diagram.png" Grid.Column="0"/>
+                    <TextBlock Grid.Column="1" Text="Thống kê"
+                               VerticalAlignment="Center" Margin="10,0,0,0"
+                               FontSize="25" Foreground="White"/>
+                </Grid>
+            </Button>
+
+            <Button x:Name="btnPromotions" Background="#FFF35330"
+                    Margin="10" Width="210" Height="80" Click="btnPromotions_Click"
+                    Style="{StaticResource MaterialDesignRaisedAccentButton}"
+                    materialDesign:RippleAssist.Feedback="#DD000000" BorderBrush="{x:Null}" >
+                <Grid Width="210" Height="80" Margin="-15,-5,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="60"/>
+                        <ColumnDefinition Width="150"/>
+                    </Grid.ColumnDefinitions>
+                    <!-- <materialDesign:PackIcon Kind="Megaphone" Grid.Column="0"
+                                             VerticalAlignment="Center" Margin="5"
+                                             Foreground="White" Width="50" Height="50"/> -->
+                    <Image Source="source/Icon/icon_promotion.png" Grid.Column="0"/>
+                    <TextBlock Grid.Column="1" Text="Khuyến mãi"
+                               VerticalAlignment="Center" Margin="0,0,0,0"
+                               FontSize="25" Foreground="White"/>
+                </Grid>
+            </Button>
+           
+            <Button x:Name="btnManagement" Background="#FF2995A6"
+                    Margin="10" Width="210" Height="80" Click="btnManagement_Click"
+                    Style="{StaticResource MaterialDesignRaisedAccentButton}"
+                    materialDesign:RippleAssist.Feedback="#DD000000" BorderBrush="{x:Null}" >
+                <Grid Width="210" Height="80" Margin="-15,-5,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="60"/>
+                        <ColumnDefinition Width="150"/>
+                    </Grid.ColumnDefinitions>
+                   <!-- <materialDesign:PackIcon Kind="UserMultiple" Grid.Column="0"
+                                             VerticalAlignment="Center" Margin="5"
+                                             Foreground="White" Width="50" Height="50"/> -->
+                    <Image Source="source/Icon/icon_staff_management.png" Grid.Column="0"/>
+                    <TextBlock Grid.Column="1" Text="Quản lý"
+                               VerticalAlignment="Center" Margin="10,0,0,0"
+                               FontSize="25" Foreground="White"/>
+                </Grid>
+            </Button>
+        </StackPanel>
+
+        <!-- Body -->
+        <Grid x:Name="Body"
+                   Margin="240,110,0,0"
+                   VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+            <usc:Trang_chu x:Name="Tab_Trang_chu" Visibility="Visible"></usc:Trang_chu>
+            <usc:Ban_hang x:Name = "Tab_Ban_hang" Visibility="Hidden"></usc:Ban_hang>
+            <usc:Nhap_hang x:Name = "Tab_Nhap_hang" Visibility="Hidden"></usc:Nhap_hang>
+            <usc:Thong_ke x:Name = "Tab_Thong_ke" Visibility="Hidden"></usc:Thong_ke>
+            <usc:Khuyen_mai x:Name = "Tab_Khuyen_mai" Visibility="Hidden"></usc:Khuyen_mai>
+            <usc:Quan_ly x:Name="Tab_Quan_ly" Visibility="Hidden"></usc:Quan_ly>
+        </Grid>
+
+    </Grid>
+</Window>

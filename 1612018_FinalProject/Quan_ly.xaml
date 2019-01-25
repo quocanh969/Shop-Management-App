@@ -1,0 +1,229 @@
+﻿<UserControl x:Class="_1612018_FinalProject.Quan_ly"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:_1612018_FinalProject"
+             mc:Ignorable="d" Background="White"
+             d:DesignHeight="790" d:DesignWidth="1060">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.teal.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <!-- Thống kê sơ bộ -->
+        <Grid VerticalAlignment="Top" HorizontalAlignment="Center"
+              Width="900"
+              Margin="0,30,0,0">
+            <Border CornerRadius="10" Background="#03a9f4"
+                    HorizontalAlignment="Right"
+                    Width="280" Height="100">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="200"/>
+                    </Grid.ColumnDefinitions>
+                    <materialDesign:PackIcon Kind="User" Foreground="White" Grid.Column="0"
+                                             VerticalAlignment="Center" HorizontalAlignment="Center"
+                                             Width="75" Height="75"/>
+                    <Grid Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <Label Grid.Row="0" Height="50"
+                           Content="Số admin" Foreground="White" FontSize="30"
+                           VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                        <Rectangle Grid.Row="1" Width="190" Height="5" Fill="White"/>
+                        <Label x:Name="lblSo_Admin" Grid.Row="2" Height="40"
+                           Content="50" Foreground="White" FontSize="28"
+                           VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                        <Label/>
+                    </Grid>
+                </Grid>
+            </Border>
+            
+            <!-- Số nhân viên -->
+            <Border CornerRadius="10" Background="#03a9f4"
+                    HorizontalAlignment="Center"
+                    Width="280" Height="100">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="200"/>
+                    </Grid.ColumnDefinitions>
+                    <materialDesign:PackIcon Kind="Users" Foreground="White" Grid.Column="0"
+                                             VerticalAlignment="Center" HorizontalAlignment="Center"
+                                             Width="75" Height="75"/>
+                    <Grid Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <Label Grid.Row="0" Height="50"
+                           Content="Số nhân viên" Foreground="White" FontSize="30"
+                           VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                        <Rectangle Grid.Row="1" Width="190" Height="5" Fill="White"/>
+                        <Label x:Name="lblSo_nhan_vien" Grid.Row="2" Height="40"
+                           Content="50" Foreground="White" FontSize="28"
+                           VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                        <Label/>
+                    </Grid>
+                </Grid>
+            </Border>
+
+            <!-- Tổng số người làm việc của cửa hàng -->
+            <Border CornerRadius="10" Background="#03a9f4"
+                    HorizontalAlignment="Left"
+                    Width="280" Height="100">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="200"/>
+                    </Grid.ColumnDefinitions>
+                    <materialDesign:PackIcon Kind="PeopleOutline" Foreground="White" Grid.Column="0"
+                                             VerticalAlignment="Center" HorizontalAlignment="Center"
+                                             Width="75" Height="75"/>
+                    <Grid Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <Label Grid.Row="0" Height="50"
+                           Content="Nhân lực" Foreground="White" FontSize="30"
+                           VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                        <Rectangle Grid.Row="1" Width="190" Height="5" Fill="White"/>
+                        <Label x:Name="lblSo_nguoi" Grid.Row="2" Height="40"
+                           Content="50" Foreground="White" FontSize="28"
+                           VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                        <Label/>
+                    </Grid>
+                </Grid>
+            </Border>
+        </Grid>
+
+        <Button x:Name="btnRefresh" Width="50" Height="50"
+                Background="Transparent" BorderThickness="0"
+                Margin="0,10,10,0" Click="btnRefresh_Click"
+                VerticalAlignment="Top" HorizontalAlignment="Right">
+            <materialDesign:PackIcon Kind="Refresh" Foreground="Black"
+                                     Margin="-10"
+                                     Height="40" Width="40"/>
+        </Button>
+        
+        <!-- Combo button Thêm - Xóa -->
+        <Border BorderBrush="Black" BorderThickness="2" CornerRadius="20"
+                Margin="0,150,10,10" Width="240"
+                HorizontalAlignment="Right" VerticalAlignment="Stretch">
+            <Grid x:Name="combo_Add_Delete">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="100"/>
+                </Grid.RowDefinitions>
+                <WrapPanel Grid.Column="0" Margin="10,20,10,0">
+                    <TextBox x:Name="txtBoxSearch" FontSize="20" Height="50" Width="170"
+                             TextWrapping="Wrap"
+                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                         materialDesign:HintAssist.Hint="Tìm kiểm tên ..."/>
+                    <Button x:Name="btnSearch" Width="45" Height="50"
+                            Click="btnSearch_Click"
+                            Background="Transparent" BorderThickness="0">
+                        <materialDesign:PackIcon Kind="Search" Foreground="Black"
+                                                 Width="40" Height="40" Margin="-15,5,-10,0"/>
+                    </Button>
+                </WrapPanel>
+
+                <!-- Thêm & Xóa -->
+                <Grid Grid.Row="1" Margin="10,20,10,0">
+                    <Button x:Name="btnAdd" FontSize="25"
+                    Width="100" Height="70" Click="btnAdd_Click"
+                    HorizontalAlignment="Left" Background="#FF484ED4"
+                    Style="{StaticResource MaterialDesignRaisedButton}">
+                        Thêm
+                    </Button>
+                    <Button x:Name="btnDelete" FontSize="25"
+                    Width="100" Height="70" Click="btnDelete_Click"
+                    HorizontalAlignment="Right" Background="OrangeRed"
+                    Style="{StaticResource MaterialDesignRaisedButton}">
+                        Xóa
+                    </Button>
+                </Grid>
+                <!-- Sữa -->
+                <Button x:Name="btnUpdate" FontSize="40" Visibility="Visible" Grid.Row="2"
+                    Width="220" Height="70" Click="btnUpdate_Click"
+                    VerticalAlignment="Center" Background="#2e86de"
+                    Style="{StaticResource MaterialDesignRaisedButton}">
+                    Sữa
+                </Button>
+
+            </Grid>
+        </Border>
+
+        <!-- List view -->
+        <DataGrid x:Name="dataGridStaff"            
+                  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                  Margin="20,150,260,20" CanUserSortColumns="True"
+                  CanUserAddRows="False" AutoGenerateColumns="False"                                     
+                  SelectedCellsChanged="dataGridProduct_SelectedCellsChanged">
+            <DataGrid.Columns>
+
+                <!-- Mã nhân viên -->
+                <DataGridTextColumn Width="80"
+                    Binding="{Binding MaNV}" Header="Mã NV" IsReadOnly="True"
+                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
+
+                <!-- Tên nhân viên -->
+                <DataGridTextColumn Binding="{Binding TenNV}" Header="Tên nhân viên"
+                                    Width="150"  IsReadOnly="True"
+                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
+
+                <!-- Giới tính -->
+                <DataGridTextColumn Width="80"
+                                    Binding="{Binding GioiTinh}" Header="Giới tính" IsReadOnly="True"                              
+                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
+
+                <!-- Năm sinh -->
+                <DataGridTextColumn Width="80"
+                                    Binding="{Binding NamSinh}" Header="Năm sinh"  IsReadOnly="True"      
+                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
+
+                <!-- Số điện thoại -->
+                <DataGridTextColumn Width="150"
+                                    Binding="{Binding Sdt}" Header="Số điện thoại"  IsReadOnly="True"                                
+                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
+
+                <!-- Chứng minh nhân dân -->
+                <DataGridTextColumn Binding="{Binding CMND}" Header="CMND" HeaderStringFormat="d"                              
+                                     IsReadOnly="True" Width="130"
+                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" >
+
+                </DataGridTextColumn>
+
+                <!-- Xem chi tiết -->
+                <DataGridTemplateColumn Width="70" Header="Chi tiết" IsReadOnly="True">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="Cell"
+                                    Width="70" Background="Transparent" Foreground="Black"
+                                    FontSize="15" HorizontalContentAlignment="Left"
+                                    BorderThickness="0" HorizontalAlignment="Left"
+                                    Click="Cell_Click">
+                                <TextBlock TextDecorations="Underline" Text="Xem"/>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>

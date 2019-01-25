@@ -1,0 +1,51 @@
+﻿<UserControl x:Class="_1612018_FinalProject.Ban_hang"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"      
+             xmlns:usc="clr-namespace:_1612018_FinalProject"
+             xmlns:local="clr-namespace:_1612018_FinalProject"
+             mc:Ignorable="d"
+             d:DesignHeight="790" d:DesignWidth="1060">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.teal.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <!-- tab bán hàng trực tiếp -->
+        <Button x:Name="btnBanHangTrucTiep" Height="60" Width="200"
+                Margin="10,0,0,0"
+                Click="btnBanHangTrucTiep_Click" Background="White"
+                Foreground="Black" FontSize="25" BorderThickness="0"
+                VerticalAlignment="Top" HorizontalAlignment="Left">
+            Trực Tiếp
+        </Button>
+            
+        <!-- tab đặt hàng -->
+        <Button x:Name="btnDatHang" Height="60" Width="200"
+                Margin="212,0,2,0"
+                Click="btnDatHang_Click" Background="LightGray"
+                Foreground="Black" FontSize="25" BorderThickness="0"
+                VerticalAlignment="Top" HorizontalAlignment="Left">
+            Đặt Hàng
+        </Button>
+
+        <!-- tab đặt hàng -->
+        <Button x:Name="btnThanhToan" Height="60" Width="200"
+                Margin="414,0,2,0"
+                Click="btnThanhToan_Click" Background="LightGray"
+                Foreground="Black" FontSize="25" BorderThickness="0"
+                VerticalAlignment="Top" HorizontalAlignment="Left">
+            Thanh Toán
+        </Button>
+
+        <Grid Margin="0,50,0,0">
+            <usc:Ban_hang_truc_tiep x:Name="Tab_Truc_Tiep" Visibility="Visible"/>
+            <usc:Dat_hang x:Name="Tab_Dat_Hang" Visibility="Hidden"/>
+            <usc:Thanh_toan x:Name="Tab_Thanh_Toan" Visibility="Hidden"/>
+        </Grid>
+    </Grid>
+</UserControl>

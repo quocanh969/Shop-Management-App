@@ -1,0 +1,179 @@
+﻿<Window x:Class="_1612018_FinalProject.Staff_info"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:_1612018_FinalProject"
+        mc:Ignorable="d" BorderThickness="3" BorderBrush="Black"
+        Title="Staff_info" Height="800" Width="450" ResizeMode="NoResize" Closed="Window_Closed"
+        WindowStartupLocation="CenterScreen" WindowStyle="None">
+    <Grid>
+        <!-- icon minh họa -->
+        <Image Source="source/Icon/icon_staff.png"
+               Margin="0,30,0,0"
+               VerticalAlignment="Top" HorizontalAlignment="Center"
+               Height="180" Width="180"/>
+        
+        <!-- setting pop up -->
+        <materialDesign:PopupBox x:Name="Setting"
+                                 PlacementMode="BottomAndAlignRightEdges" StaysOpen="False"
+                                 Margin="0,10,10,0"
+                                 VerticalAlignment="Top" HorizontalAlignment="Right">
+            <materialDesign:PopupBox.ToggleContent>
+                <materialDesign:PackIcon Kind="Settings" Foreground="Black"
+                                             Height="30" Width="30"/>
+            </materialDesign:PopupBox.ToggleContent>
+            <Button x:Name="btnSetting" VerticalAlignment="Top" HorizontalAlignment="Right" BorderThickness="0"
+                Background="Transparent" Foreground="Black" Width="150" Height="40"                
+                Margin="0,20,0,0" Click="btnSetting_Click">
+                <TextBlock Text="Đổi mật khẩu" FontSize="18" Width="120"
+                           VerticalAlignment="Bottom"/>
+            </Button>
+        </materialDesign:PopupBox>        
+      
+        <!-- body -->
+        <Grid Margin="0,220,0,0"
+              HorizontalAlignment="Center" VerticalAlignment="Top">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- Tên nhân viên -->
+            <WrapPanel Grid.Row="0">
+                <materialDesign:PackIcon Kind="UserCardDetails" Height="30" Width="30"
+                                     Margin="0,0,10,0" VerticalAlignment="Bottom"/>
+                <TextBox x:Name="txtBoxTenNV"
+                     materialDesign:HintAssist.Hint="Tên nhân viên"
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                     FontSize="20" Height="50" Width="350"/>
+            </WrapPanel>
+
+            <!-- Trạng thái nam hay nữ-->
+            <WrapPanel Grid.Row="1" Margin="0,10,0,0">
+                <Label Content="Giới tính: "
+                       VerticalContentAlignment="Center"
+                       FontSize="20" Width="100" Height="50"/>
+                <RadioButton x:Name="chckNam" Content="Nam" FontSize="20" VerticalContentAlignment="Center"
+                             Margin="20,0,0,0"/>
+                <RadioButton x:Name="chckNu" Content="Nữ" FontSize="20" VerticalContentAlignment="Center"
+                             Margin="20,0,0,0" IsChecked="True"/>
+            </WrapPanel>
+
+            <!--Năm sinh và số điện thoại -->
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition Width="280"/>
+                </Grid.ColumnDefinitions>
+                <!-- năm sinh -->
+                <WrapPanel Grid.Column="0">
+                    <ComboBox materialDesign:HintAssist.Hint="Năm sinh" 
+                              Height="50" Width="100" FontSize="20"                      
+                              Margin="10,0,0,0"
+                              x:Name="cmbNamSinh"
+                              Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock FontSize="20" HorizontalAlignment="Right"
+                                           Height="50" Text="{Binding year}"/>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                </WrapPanel>
+                <!-- Số điện thoại -->
+                <WrapPanel Grid.Column="1" Margin="50,0,0,0">
+                    <materialDesign:PackIcon Kind="Telephone" Width="30" Height="30"
+                                             VerticalAlignment="Bottom"
+                                             Margin="0,0,10,0"/>
+                    <TextBox x:Name="txtBoxTel" Width="180" Height="50"
+                             FontSize="20" materialDesign:HintAssist.Hint="Số điện thoại"
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                </WrapPanel>
+            </Grid>
+
+            <!-- Email -->
+            <Grid Grid.Row="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="250"/>
+                    <ColumnDefinition Width="150"/>
+                </Grid.ColumnDefinitions>
+                <WrapPanel Grid.Column="0" Margin="0,10,0,0">
+                    <materialDesign:PackIcon Kind="EmailOutline" VerticalAlignment="Bottom"
+                                         Width="30" Height="30"    
+                                         Margin="0,0,10,0"/>
+                    <TextBox x:Name="txtBoxEmail" FontSize="20" Height="50" Width="180"
+                         materialDesign:HintAssist.Hint="Email"
+                             TextWrapping="Wrap"
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>                    
+                </WrapPanel>
+                <WrapPanel Grid.Column="1">
+                    <ComboBox materialDesign:HintAssist.Hint="Vai trò" 
+                              Height="50" Width="150" FontSize="20"                      
+                              Margin="0,10,0,0"
+                              x:Name="cmbRole"
+                              Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                        <ComboBoxItem>Staff</ComboBoxItem>
+                        <ComboBoxItem>Admin</ComboBoxItem>                        
+                    </ComboBox>
+                </WrapPanel>
+            </Grid>
+
+            <!-- CMND -->
+            <Grid Grid.Row="4">
+                <WrapPanel Grid.Column="0" Margin="0,10,0,0">
+                    <materialDesign:PackIcon Kind="Tick" VerticalAlignment="Bottom"
+                                         Width="30" Height="30"    
+                                         Margin="0,0,10,0"/>
+                    <TextBox x:Name="txtBoxCMND" FontSize="20" Height="50" Width="350"
+                         materialDesign:HintAssist.Hint="CMND"
+                             TextWrapping="Wrap"
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                </WrapPanel>
+
+            </Grid>
+
+            <!-- Email -->
+            <Grid Grid.Row="5" Margin="0,20,0,0">
+                <WrapPanel Grid.Column="0" Margin="0,10,0,0">
+                    <materialDesign:PackIcon Kind="UserAddress" VerticalAlignment="Top"
+                                         Width="30" Height="30"    
+                                         Margin="0,10,10,0"/>
+                    <TextBox x:Name="txtBoxDiaChi" FontSize="20" Height="100" Width="350"
+                         materialDesign:HintAssist.Hint="Địa chỉ"
+                             TextWrapping="Wrap"
+                             VerticalScrollBarVisibility="Auto"
+                                 Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}"/>
+                </WrapPanel>
+
+            </Grid>
+        </Grid>
+
+        <Label x:Name="ErrorNotice" Content="*Error" Foreground="Red"
+               VerticalAlignment="Bottom" HorizontalAlignment="Right"
+               Margin="0,0,30,125" Visibility="Hidden"
+               FontSize="20"/>
+
+        <Rectangle x:Name="Man_che" Margin="0,220,0,130" Fill="Transparent"
+                   Visibility="Hidden" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+
+        <!-- button OK -->
+        <Button x:Name="btnOK" Click="btnOK_Click"
+                Margin="0,0,50,50"
+                VerticalAlignment="Bottom" HorizontalAlignment="Right"
+                Content="OK" Background="OrangeRed"
+                Width="150" Height="50" FontSize="30"/>
+
+        <!-- button Cancel -->
+        <Button x:Name="btnCancel" Click="btnCancel_Click"
+                Margin="50,0,0,50"
+                VerticalAlignment="Bottom" HorizontalAlignment="Left"
+                Content="CANCEL" Background="#FF484ED4"
+                Width="150" Height="50" FontSize="30"/>
+    </Grid>
+</Window>

@@ -1,0 +1,61 @@
+﻿<Window x:Class="_1612018_FinalProject.Gio_hang"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:_1612018_FinalProject"
+        mc:Ignorable="d" BorderBrush="Black" BorderThickness="3"
+        Title="Gio_hang" Height="450" Width="800" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None">
+    <Grid>
+        <!-- giỏ hàng -->        
+            <DataGrid x:Name="dataGiaHang"            
+                  Margin="20,20,20,80"
+                  CanUserAddRows="False" AutoGenerateColumns="False"                                     
+                  SelectedCellsChanged="dataGiaHang_SelectedCellsChanged">
+                <DataGrid.Columns>
+                    <!-- Tên sản phẩm -->
+                    <DataGridTextColumn Binding="{Binding tenSP}" Header="Tên sản phẩm"
+                                    Width="150"  IsReadOnly="True"
+                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
+
+                    <!-- Loại sản phẩm -->
+                    <DataGridTextColumn Width="110"
+                                    Binding="{Binding maLoai}" Header="Loại sản phẩm" IsReadOnly="True"                              
+                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
+
+                    <!-- Số lượng -->
+                    <DataGridTextColumn Width="80"
+                                    Binding="{Binding soLuong}" Header="Số lượng"  IsReadOnly="True"      
+                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
+
+                    <!-- Đơn giá -->
+                    <DataGridTextColumn Width="130"
+                                    Binding="{Binding thanhTien}" Header="Đơn giá (USD)"  IsReadOnly="True"                                
+                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />                  
+                    
+                    <!-- Xem chi tiết -->
+                    <DataGridTemplateColumn Width="70" Header="Xóa" IsReadOnly="True">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button x:Name="Cell"
+                                    Width="70" Background="Transparent" Foreground="Black"
+                                    FontSize="15" HorizontalContentAlignment="Left"
+                                    BorderThickness="0" HorizontalAlignment="Left"
+                                    Click="Cell_Click">
+                                    <TextBlock TextDecorations="Underline" Text="Xoa"/>
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                </DataGrid.Columns>
+            </DataGrid>
+        
+        
+        <!-- button OK -->
+        <Button x:Name="btnOK" VerticalAlignment="Bottom" HorizontalAlignment="Center"
+                Margin="0,0,0,20" Width="100" Height="50"
+                Content="OK" FontSize="25" Click="btnOK_Click"
+                Background="OrangeRed" BorderThickness="0" Foreground="White"/>
+    </Grid>
+</Window>

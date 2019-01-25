@@ -1,0 +1,43 @@
+﻿<UserControl x:Class="_1612018_FinalProject.Thong_ke"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"                
+             xmlns:local="clr-namespace:_1612018_FinalProject"             
+             xmlns:usc="clr-namespace:_1612018_FinalProject"
+             mc:Ignorable="d" Background="Transparent"
+             d:DesignHeight="790" d:DesignWidth="1060">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.teal.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <!-- tab mặt hàng bán chạy -->
+        <Button x:Name="btnBanChay" Height="60" Width="200"
+                Margin="10,0,0,0"
+                Click="btnBanChay_Click" Background="White"
+                Foreground="Black" FontSize="25" BorderThickness="0"
+                VerticalAlignment="Top" HorizontalAlignment="Left">
+            Bán Chạy
+        </Button>
+
+        <!-- tab doanh thu -->
+        <Button x:Name="btnDoanhThu" Height="60" Width="200"
+                Margin="212,0,2,0"
+                Click="btnDoanhThu_Click" Background="LightGray"
+                Foreground="Black" FontSize="25" BorderThickness="0"
+                VerticalAlignment="Top" HorizontalAlignment="Left">
+            Doanh Thu
+        </Button>
+
+        <!-- User controller -->
+        <Grid Margin="0,50,0,0">
+            <usc:Mat_hang_ban_chay x:Name="Tab_Mat_Hang_Ban_Chay" Visibility="Visible"/>
+            <usc:Doanh_thu x:Name="Tab_Doanh_Thu" Visibility="Hidden"/>
+        </Grid>      
+
+    </Grid>
+</UserControl>

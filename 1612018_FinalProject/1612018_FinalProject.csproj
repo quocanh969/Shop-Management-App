@@ -1,0 +1,334 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{37B6C7C9-0415-4272-B287-C4C4F97D077C}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>_1612018_FinalProject</RootNamespace>
+    <AssemblyName>1612018_FinalProject</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignColors, Version=1.0.0.14576, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignColors.1.1.1\lib\net45\MaterialDesignColors.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignThemes.Wpf, Version=2.5.0.1205, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignThemes.2.5.0.1205\lib\net45\MaterialDesignThemes.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Windows.Controls.DataVisualization.Toolkit, Version=3.5.40128.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WPFToolkit.DataVisualization.3.5.50211.1\lib\System.Windows.Controls.DataVisualization.Toolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Controls.Input.Toolkit, Version=3.5.40128.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WPFToolkit.3.5.50211.1\lib\System.Windows.Controls.Input.Toolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Controls.Layout.Toolkit, Version=3.5.40128.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WPFToolkit.3.5.50211.1\lib\System.Windows.Controls.Layout.Toolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="WPFToolkit, Version=3.5.40128.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WPFToolkit.3.5.50211.1\lib\WPFToolkit.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="AddEvent.xaml.cs">
+      <DependentUpon>AddEvent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ban_hang_truc_tiep.xaml.cs">
+      <DependentUpon>Ban_hang_truc_tiep.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dat_hang.xaml.cs">
+      <DependentUpon>Dat_hang.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Doanh_thu.xaml.cs">
+      <DependentUpon>Doanh_thu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Doi_mat_khau.xaml.cs">
+      <DependentUpon>Doi_mat_khau.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Gio_hang.xaml.cs">
+      <DependentUpon>Gio_hang.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GlobalItem.cs" />
+    <Compile Include="Khuyen_mai.xaml.cs">
+      <DependentUpon>Khuyen_mai.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Mat_hang_ban_chay.xaml.cs">
+      <DependentUpon>Mat_hang_ban_chay.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="model\Data_handle.cs" />
+    <Compile Include="model\DATHANG.cs">
+      <DependentUpon>Model_Quan_ly_cua_hang_quan_ao.tt</DependentUpon>
+    </Compile>
+    <Compile Include="model\HOADON.cs">
+      <DependentUpon>Model_Quan_ly_cua_hang_quan_ao.tt</DependentUpon>
+    </Compile>
+    <Compile Include="model\KHUYENMAI.cs">
+      <DependentUpon>Model_Quan_ly_cua_hang_quan_ao.tt</DependentUpon>
+    </Compile>
+    <Compile Include="model\LOAI.cs">
+      <DependentUpon>Model_Quan_ly_cua_hang_quan_ao.tt</DependentUpon>
+    </Compile>
+    <Compile Include="model\Model_Quan_ly_cua_hang_quan_ao.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model_Quan_ly_cua_hang_quan_ao.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="model\Model_Quan_ly_cua_hang_quan_ao.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model_Quan_ly_cua_hang_quan_ao.tt</DependentUpon>
+    </Compile>
+    <Compile Include="model\Model_Quan_ly_cua_hang_quan_ao.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model_Quan_ly_cua_hang_quan_ao.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="model\NHANVIEN.cs">
+      <DependentUpon>Model_Quan_ly_cua_hang_quan_ao.tt</DependentUpon>
+    </Compile>
+    <Compile Include="model\NHAPHANG.cs">
+      <DependentUpon>Model_Quan_ly_cua_hang_quan_ao.tt</DependentUpon>
+    </Compile>
+    <Compile Include="model\SANPHAM.cs">
+      <DependentUpon>Model_Quan_ly_cua_hang_quan_ao.tt</DependentUpon>
+    </Compile>
+    <Compile Include="model\USER.cs">
+      <DependentUpon>Model_Quan_ly_cua_hang_quan_ao.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Nhap_hang.xaml.cs">
+      <DependentUpon>Nhap_hang.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Product.xaml.cs">
+      <DependentUpon>Product.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Quan_ly.xaml.cs">
+      <DependentUpon>Quan_ly.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Staff_info.xaml.cs">
+      <DependentUpon>Staff_info.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Thanh_toan.xaml.cs">
+      <DependentUpon>Thanh_toan.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Thong_ke.xaml.cs">
+      <DependentUpon>Thong_ke.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Trang_chu.xaml.cs">
+      <DependentUpon>Trang_chu.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="AddEvent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ban_hang.xaml">
+      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Include="Ban_hang_truc_tiep.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dat_hang.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Doanh_thu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Doi_mat_khau.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Gio_hang.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Khuyen_mai.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Login.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Ban_hang.xaml.cs">
+      <DependentUpon>Ban_hang.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Login.xaml.cs">
+      <DependentUpon>Login.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Mat_hang_ban_chay.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Nhap_hang.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Product.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Quan_ly.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Staff_info.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Thanh_toan.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Thong_ke.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Trang_chu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EntityDeploy Include="model\Model_Quan_ly_cua_hang_quan_ao.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model_Quan_ly_cua_hang_quan_ao.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="model\Model_Quan_ly_cua_hang_quan_ao.edmx.diagram">
+      <DependentUpon>Model_Quan_ly_cua_hang_quan_ao.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="source\LoginScreen\icon_user_login.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="source\LoginScreen\white_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="source\Icon\icon_box.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="source\Icon\icons-umbrella.png" />
+    <Resource Include="source\Icon\icon_shopping.png" />
+    <Resource Include="source\Icon\icon_staff_management.png" />
+    <Resource Include="source\Icon\icon_clothes.png" />
+    <Resource Include="source\Icon\icon_diagram.png" />
+    <Resource Include="source\Icon\icon_store.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="source\Icon\icon_staff.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="source\Icon\icon_promotion.png" />
+    <Resource Include="source\Icon\icon_promotion_e.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="model\Model_Quan_ly_cua_hang_quan_ao.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model_Quan_ly_cua_hang_quan_ao.edmx</DependentUpon>
+      <LastGenOutput>Model_Quan_ly_cua_hang_quan_ao.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="model\Model_Quan_ly_cua_hang_quan_ao.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model_Quan_ly_cua_hang_quan_ao.edmx</DependentUpon>
+      <LastGenOutput>Model_Quan_ly_cua_hang_quan_ao.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

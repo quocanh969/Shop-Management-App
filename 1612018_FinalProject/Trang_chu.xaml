@@ -1,0 +1,290 @@
+﻿<UserControl x:Class="_1612018_FinalProject.Trang_chu"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"             
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:_1612018_FinalProject"
+             mc:Ignorable="d"
+             Background="White"
+             d:DesignHeight="790" d:DesignWidth="1060">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.cyan.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>             
+        <!-- Thống kê sơ bộ -->
+        <Grid VerticalAlignment="Top" HorizontalAlignment="Center"
+              Width="900"
+              Margin="0,30,0,0">
+            <Border CornerRadius="10" Background="#03a9f4"
+                    HorizontalAlignment="Left"
+                    Width="280" Height="100">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="200"/>
+                    </Grid.ColumnDefinitions>
+                    <materialDesign:PackIcon Kind="Cube" Foreground="White" Grid.Column="0"
+                                             VerticalAlignment="Center" HorizontalAlignment="Center"
+                                             Width="75" Height="75"/>
+                    <Grid Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <Label Grid.Row="0" Height="50"
+                           Content="Số mặt hàng" Foreground="White" FontSize="30"
+                           VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                        <Rectangle Grid.Row="1" Width="190" Height="5" Fill="White"/>
+                        <Label x:Name="lblSo_hang" Grid.Row="2" Height="40"
+                           Content="50" Foreground="White" FontSize="28"
+                           VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                        <Label/>
+                    </Grid>
+                </Grid>
+            </Border>
+
+            <Border x:Name="box_Tong_hang" CornerRadius="10" Background="#03a9f4"
+                    HorizontalAlignment="Right"
+                    Width="280" Height="100">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="200"/>
+                    </Grid.ColumnDefinitions>
+                    <materialDesign:PackIcon Kind="CubeUnfolded" Foreground="White" Grid.Column="0"
+                                             VerticalAlignment="Center" HorizontalAlignment="Center"
+                                             Width="75" Height="75"/>
+                    <Grid Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <Label Grid.Row="0" Height="50"
+                           Content="Tổng hàng hóa" Foreground="White" FontSize="27"
+                           VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                        <Rectangle Grid.Row="1" Width="190" Height="5" Fill="White"/>
+                        <Label x:Name="lblTong_hang" Grid.Row="2" Height="40"
+                           Content="50" Foreground="White" FontSize="28"
+                           VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                        <Label/>
+                    </Grid>
+                </Grid>
+            </Border>
+
+            <Border CornerRadius="10" Background="#03a9f4"
+                    HorizontalAlignment="Center"
+                    Width="280" Height="100">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="200"/>
+                    </Grid.ColumnDefinitions>
+                    <materialDesign:PackIcon Kind="Category" Foreground="White" Grid.Column="0"
+                                             VerticalAlignment="Center" HorizontalAlignment="Center"
+                                             Width="75" Height="75"/>
+                    <Grid Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <Label Grid.Row="0" Height="50"
+                           Content="Số Loại hàng" Foreground="White" FontSize="30"
+                           VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                        <Rectangle Grid.Row="1" Width="190" Height="5" Fill="White"/>
+                        <Label x:Name="lblSo_loai" Grid.Row="2" Height="40"
+                           Content="50" Foreground="White" FontSize="28"
+                           VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                        <Label/>
+                    </Grid>
+                </Grid>
+            </Border>
+        </Grid>
+
+        <!-- Button refresh -->
+        <Button x:Name="btnRefresh" Width="50" Height="50"
+                Background="Transparent" BorderThickness="0"
+                Margin="0,10,10,0" Click="btnRefresh_Click"
+                VerticalAlignment="Top" HorizontalAlignment="Right">
+            <materialDesign:PackIcon Kind="Refresh" Foreground="Black"
+                                     Margin="-10"
+                                     Height="40" Width="40"/>
+        </Button>
+
+        <!-- Combo button Thêm - Xóa -->
+        <Border BorderBrush="Black" BorderThickness="2" CornerRadius="20"
+                Margin="0,150,10,10" Width="240"
+                HorizontalAlignment="Right" VerticalAlignment="Stretch">
+            <Grid x:Name="combo_Add_Delete">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="70"/>                    
+                    <RowDefinition Height="80"/>
+                    <RowDefinition Height="80"/>
+                    <RowDefinition Height="80"/>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <!-- Khung search -->
+                <WrapPanel Grid.Column="0" Margin="10,20,10,0">                                        
+                    <TextBox x:Name="txtBoxSearch" FontSize="20" Height="50" Width="170"
+                             TextWrapping="Wrap"
+                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                         materialDesign:HintAssist.Hint="Tìm kiểm tên ..."/>
+                    <Button x:Name="btnSearch" Width="45" Height="50"
+                            Click="btnSearch_Click"
+                            Background="Transparent" BorderThickness="0">
+                        <materialDesign:PackIcon Kind="Search" Foreground="Black"
+                                                 Width="40" Height="40" Margin="-15,5,-10,0"/>
+                    </Button>
+                </WrapPanel>
+                <!-- Bộ lọc -->
+                <ComboBox materialDesign:HintAssist.Hint="Bộ lọc" Grid.Row="1"
+                                  HorizontalAlignment="Center" VerticalAlignment="Bottom"
+                                  Height="50" Width="200" FontSize="20"                      
+                              Margin="10,0,0,0" HorizontalContentAlignment="Center"
+                              x:Name="cmbFilter" DropDownClosed="cmbFilter_DropDownClosed"
+                              Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                    <ComboBoxItem>
+                        Loại
+                    </ComboBoxItem>
+                    <ComboBoxItem>
+                        Đơn giá
+                    </ComboBoxItem>
+                    <ComboBoxItem>
+                        Ngày nhập
+                    </ComboBoxItem>
+                    <ComboBoxItem>
+                        Nhà cung cấp
+                    </ComboBoxItem>
+                </ComboBox>
+                <!-- Bộ lọc chọn cách thức -->
+                <ComboBox Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center"
+                          Height="50" Width="200" FontSize="20"                      
+                          Margin="10,0,0,0" HorizontalContentAlignment="Center"
+                          x:Name="cmbFilterValue"
+                          Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock FontSize="20" HorizontalAlignment="Right"
+                                           Height="50" Text="{Binding value}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <!-- button lọc -->
+                <Button x:Name="btnFilter" Grid.Row="3" Foreground="Black"
+                        Width="200" Height="50" Content="Lọc" FontSize="30"
+                        Click="btnFilter_Click"
+                        HorizontalAlignment="Center" VerticalAlignment="Center"
+                        Background="LightGray" BorderThickness="0"/>
+                <!-- Thêm & Xóa -->
+                <Grid Grid.Row="4" Margin="10,20,10,0">
+                    <Button x:Name="btnAdd" FontSize="25"
+                    Width="100" Height="70" Click="btnAdd_Click"
+                    HorizontalAlignment="Left" Background="#FF484ED4"
+                    Style="{StaticResource MaterialDesignRaisedButton}">
+                        Thêm
+                    </Button>
+                    <Button x:Name="btnDelete" FontSize="25"
+                    Width="100" Height="70" Click="btnDelete_Click"
+                    HorizontalAlignment="Right" Background="OrangeRed"
+                    Style="{StaticResource MaterialDesignRaisedButton}">
+                        Xóa
+                    </Button>
+                </Grid>
+                <!-- Sữa -->
+                <Button x:Name="btnUpdate" FontSize="40" Visibility="Visible" Grid.Row="5"
+                    Width="220" Height="70" Click="btnUpdate_Click"
+                    VerticalAlignment="Center" Background="#2e86de"
+                    Style="{StaticResource MaterialDesignRaisedButton}">
+                    Sữa
+                </Button>
+
+            </Grid>
+        </Border>
+
+        <!-- data -->
+        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                  Margin="20,150,260,20">
+            <!-- Data grid view -->
+            <DataGrid x:Name="dataGridProduct"            
+                  CanUserSortColumns="True" Margin="0,0,0,80"
+                  CanUserAddRows="False" AutoGenerateColumns="False"                                     
+                  SelectedCellsChanged="dataGridProduct_SelectedCellsChanged">
+                <DataGrid.Columns>
+
+                    <!-- Mã sản phẩm -->
+                    <DataGridTextColumn Width="80"
+                    Binding="{Binding MaSP}" Header="Mã SP" IsReadOnly="True"
+                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
+
+                    <!-- Tên sản phẩm -->
+                    <DataGridTextColumn Binding="{Binding TenSP}" Header="Tên sản phẩm"
+                                    Width="150"  IsReadOnly="True"
+                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
+
+                    <!-- Loại sản phẩm -->
+                    <DataGridTextColumn Width="110"
+                                    Binding="{Binding MaLoai}" Header="Loại sản phẩm" IsReadOnly="True"                              
+                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
+
+                    <!-- Số lượng -->
+                    <DataGridTextColumn Width="80"
+                                    Binding="{Binding SoLuong}" Header="Số lượng"  IsReadOnly="True"      
+                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
+
+                    <!-- Đơn giá -->
+                    <DataGridTextColumn Width="130"
+                                    Binding="{Binding DonGia}" Header="Đơn giá (USD)"  IsReadOnly="True"                                
+                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
+
+                    <!-- Ngày nhập hàng -->
+                    <DataGridTextColumn Binding="{Binding NgayNhap, StringFormat=\{0:dd/MM/yyyy\}}" Header="Ngày nhập hàng" HeaderStringFormat="d"                              
+                                     IsReadOnly="True" Width="125"
+                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" >
+
+                    </DataGridTextColumn>
+
+                    <!-- Xem chi tiết -->
+                    <DataGridTemplateColumn Width="70" Header="Chi tiết" IsReadOnly="True">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button x:Name="Cell"
+                                    Width="70" Background="Transparent" Foreground="Black"
+                                    FontSize="15" HorizontalContentAlignment="Left"
+                                    BorderThickness="0" HorizontalAlignment="Left"
+                                    Click="Cell_Click">
+                                    <TextBlock TextDecorations="Underline" Text="Xem"/>
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <Grid VerticalAlignment="Bottom" HorizontalAlignment="Center"
+                   Width="500" Height="50" Margin="0,0,0,20">
+                <Button x:Name="btnPrev" Height="50" Width="100" BorderThickness="0"
+                        HorizontalAlignment="Left" Click="btnPrev_Click"
+                        Visibility="Hidden"
+                        Content="PREV" Background="LightGray" Foreground="Black"/>
+                <WrapPanel HorizontalAlignment="Center">
+                    <Label x:Name="lblCurrentPage" FontSize="30"></Label>
+                    <Label FontSize="30">/</Label>
+                    <Label x:Name="lblTotalPage" FontSize="30"></Label>
+                </WrapPanel>
+                <Button x:Name="btnNext" Height="50" Width="100" BorderThickness="0"
+                        HorizontalAlignment="Right" Click="btnNext_Click"
+                        Content="NEXT" Background="LightGray" Foreground="Black"/>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

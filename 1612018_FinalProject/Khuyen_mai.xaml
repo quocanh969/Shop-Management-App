@@ -1,0 +1,126 @@
+﻿<UserControl x:Class="_1612018_FinalProject.Khuyen_mai"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:_1612018_FinalProject"
+             mc:Ignorable="d" Background="White"
+             d:DesignHeight="790" d:DesignWidth="1060">
+    <Grid>
+        <!-- Chương trình khuyến mãi -->
+        <Label Content="DANH SÁCH KHUYẾN MÃI" FontSize="30"
+               Margin="0,20,0,0"
+               HorizontalAlignment="Center" VerticalAlignment="Top" FontFamily="Segoe UI Black"/>
+
+
+        <!-- Button refresh -->
+        <Button x:Name="btnRefresh" Width="50" Height="50"
+                Background="Transparent" BorderThickness="0"
+                Margin="0,10,10,0" Click="btnRefresh_Click"
+                VerticalAlignment="Top" HorizontalAlignment="Right">
+            <materialDesign:PackIcon Kind="Refresh" Foreground="Black"
+                                     Margin="-10"
+                                     Height="40" Width="40"/>
+        </Button>
+
+        <!-- Combo button Thêm - Xóa -->
+        <Border x:Name="ToolBar"
+                BorderBrush="Black" BorderThickness="2" CornerRadius="20"
+                Margin="0,150,10,10" Width="240"
+                HorizontalAlignment="Right" VerticalAlignment="Stretch">
+            <Grid x:Name="combo_Add_Delete">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="100"/>
+                </Grid.RowDefinitions>
+                <WrapPanel Grid.Column="0" Margin="10,20,10,0">
+                    <TextBox x:Name="txtBoxSearch" FontSize="20" Height="50" Width="170"
+                             TextWrapping="Wrap"
+                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                         materialDesign:HintAssist.Hint="Tìm kiểm tên ..."/>
+                    <Button x:Name="btnSearch" Width="45" Height="50"
+                            Click="btnSearch_Click"
+                            Background="Transparent" BorderThickness="0">
+                        <materialDesign:PackIcon Kind="Search" Foreground="Black"
+                                                 Width="40" Height="40" Margin="-15,5,-10,0"/>
+                    </Button>
+                </WrapPanel>
+
+                <!-- Thêm & Xóa -->
+                <Grid Grid.Row="1" Margin="10,20,10,0">
+                    <Button x:Name="btnAdd" FontSize="25"
+                    Width="100" Height="70" Click="btnAdd_Click"
+                    HorizontalAlignment="Left" Background="#FF484ED4"
+                    Style="{StaticResource MaterialDesignRaisedButton}">
+                        Thêm
+                    </Button>
+                    <Button x:Name="btnDelete" FontSize="25"
+                    Width="100" Height="70" Click="btnDelete_Click"
+                    HorizontalAlignment="Right" Background="OrangeRed"
+                    Style="{StaticResource MaterialDesignRaisedButton}">
+                        Xóa
+                    </Button>
+                </Grid>
+                <!-- Sữa -->
+                <Button x:Name="btnUpdate" FontSize="40" Visibility="Visible" Grid.Row="2"
+                    Width="220" Height="70" Click="btnUpdate_Click"
+                    VerticalAlignment="Center" Background="#2e86de"
+                    Style="{StaticResource MaterialDesignRaisedButton}">
+                    Sữa
+                </Button>
+
+            </Grid>
+        </Border>
+
+
+        <!-- Data Grid -->
+        <DataGrid x:Name="dataGridEvent"            
+                  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                  Margin="20,150,260,20" CanUserSortColumns="True"
+                  CanUserAddRows="False" AutoGenerateColumns="False"                                     
+                  SelectedCellsChanged="dataGridEvent_SelectedCellsChanged">
+            <DataGrid.Columns>
+
+                <!-- Mã khuyến mãi -->
+                <DataGridTextColumn Width="80"
+                    Binding="{Binding MaKM}" Header="Mã khuyến mãi" IsReadOnly="True"
+                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
+
+                <!-- Tên chương trình khuyến mãi -->
+                <DataGridTextColumn Binding="{Binding TenKM}" Header="Tên chương trình khuyến mãi"
+                                    Width="300"  IsReadOnly="True"
+                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
+               
+                <!-- Ngày bắt đầu sự kiện -->
+                <DataGridTextColumn Binding="{Binding NgayBD, StringFormat=\{0:dd/MM/yyyy\}}" Header="Ngày bắt đầu" HeaderStringFormat="d"                              
+                                     IsReadOnly="True" Width="150"
+                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
+
+                <!-- Ngày kết thúc sự kiện -->
+                <DataGridTextColumn Binding="{Binding NgayKT, StringFormat=\{0:dd/MM/yyyy\}}" Header="Ngày kết thúc" HeaderStringFormat="d"                              
+                                     IsReadOnly="True" Width="150"
+                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
+
+                <!-- Xem chi tiết -->
+                <DataGridTemplateColumn Width="70" Header="Chi tiết" IsReadOnly="True">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="Cell"
+                                    Width="70" Background="Transparent" Foreground="Black"
+                                    FontSize="15" HorizontalContentAlignment="Left"
+                                    BorderThickness="0" HorizontalAlignment="Left"
+                                    Click="Cell_Click">
+                                <TextBlock TextDecorations="Underline" Text="Xem"/>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+            </DataGrid.Columns>
+        </DataGrid>     
+        
+    </Grid>
+</UserControl>

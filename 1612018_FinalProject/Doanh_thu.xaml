@@ -1,0 +1,250 @@
+﻿<UserControl x:Class="_1612018_FinalProject.Doanh_thu"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+              xmlns:charting="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:_1612018_FinalProject"
+             mc:Ignorable="d"  Background="White"
+             d:DesignHeight="740" d:DesignWidth="1060">
+    <Grid>
+        <!-- Làm mới thống kê -->
+        <Button x:Name="btnRefresh" Width="50" Height="50"
+                Background="Transparent" BorderThickness="0"
+                Margin="0,40,20,0" Click="btnRefresh_Click"
+                VerticalAlignment="Top" HorizontalAlignment="Right">
+            <materialDesign:PackIcon Kind="Refresh" Foreground="Black"
+                                     Margin="-10"
+                                     Height="40" Width="40"/>
+        </Button>
+        
+        <!-- button thống kê -->
+        <Button x:Name="btnThongKe" Background="OrangeRed"
+                Margin="0,100,5,0" Click="btnThongKe_Click"
+                VerticalAlignment="Top" HorizontalAlignment="Right"
+                Content="Thống kê" FontSize="30" Width="200" Height="80"/>
+
+        <Grid Width="820" HorizontalAlignment="Left"
+              Margin="20,10,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- Các Radio button -->
+            <Grid Grid.Row="0" Height="40">
+                <!-- lựa chọn thời điểm -->
+                <RadioButton x:Name="Thoi_diem" Content="Thời điểm"
+                                 Margin="0,0,0,10" Checked="Thoi_diem_Checked"
+                                 FontSize="20" VerticalContentAlignment="Center"/>
+                <RadioButton x:Name="Thoi_gian" Content="Thời gian" Margin="415,0,0,10"
+                             Checked="Thoi_gian_Checked"
+                                  FontSize="20" VerticalContentAlignment="Center"/>
+            </Grid>
+
+            <!-- Chọn hình thức thống kê -->
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="415"/>
+                    <ColumnDefinition Width="415"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Thời điểm -->
+                <Border BorderThickness="2" BorderBrush="Black" CornerRadius="20"
+                        Grid.Column="0" IsEnabled="{Binding ElementName=Thoi_diem,Path=IsChecked}"                    
+                        Width="400" Height="150">
+                    <!-- lựa chọn cách thống kê -->
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <!-- Chọn loại thống kê-->
+                        <ComboBox materialDesign:HintAssist.Hint="Lựa chọn" 
+                                  HorizontalAlignment="Center" VerticalAlignment="Top"
+                                  Grid.Row="0" Height="50" Width="100" FontSize="20"                      
+                              Margin="10,0,0,0" HorizontalContentAlignment="Center"
+                              x:Name="cmbType" LostFocus="cmbType_LostFocus"
+                              Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock FontSize="20" HorizontalAlignment="Right"
+                                           Height="50" Text="{Binding luachon}"/>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+
+                        <!-- lựa chọn hình thức thống kê -->
+                        <Grid Grid.Row="1">
+                            <!-- Lựa chọn ngày -->
+                            <WrapPanel x:Name="chonNgay" Grid.Row="0" Margin="20,10,0,0"
+                               HorizontalAlignment="Left" IsEnabled="True">
+                                <TextBox x:Name="dayStatistic" IsEnabled="False"
+                                 materialDesign:HintAssist.Hint="Ngày thống kê"                             
+                                 FontSize="20" Height="50" Width="150"/>
+                                <materialDesign:PopupBox x:Name="ngayThongKe"
+                                                PlacementMode="BottomAndAlignRightEdges" StaysOpen="False"
+                                                Closed="ngayThongKe_Closed">
+                                    <materialDesign:PopupBox.ToggleContent>
+                                        <materialDesign:PackIcon Kind="Calendar" Foreground="Black"                                                                 
+                                                 Height="40" Width="40"/>
+                                    </materialDesign:PopupBox.ToggleContent>
+                                    <Calendar x:Name="DayCalendar" Grid.Row="0"/>
+                                </materialDesign:PopupBox>
+                            </WrapPanel>
+
+                            <!-- Lữa chọn thời gian -->
+                            <ComboBox materialDesign:HintAssist.Hint="Lựa chọn"
+                                      IsEnabled="False"
+                                  HorizontalAlignment="Right" VerticalAlignment="Top"
+                                  Grid.Row="0" Height="50" Width="150" FontSize="20"                      
+                              Margin="0,10,20,0" HorizontalContentAlignment="Center"
+                              x:Name="cmbTypeValue"
+                              Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock FontSize="20" HorizontalAlignment="Right"
+                                           Height="50" Text="{Binding value}"/>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                        </Grid>
+                    </Grid>
+                </Border>
+
+                <!-- Chọn theo khoảng thời gian -->
+                <Border Grid.Column="1"
+                        IsEnabled="{Binding ElementName=Thoi_gian,Path=IsChecked}"
+                        
+                    BorderThickness="2" BorderBrush="Black"  CornerRadius="20"
+                VerticalAlignment="Top" HorizontalAlignment="Left"                
+                Width="400" Height="150">
+                    <!-- Chọn ngày bắt đầu và kết thúc -->
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="75"/>
+                            <RowDefinition Height="75"/>
+                        </Grid.RowDefinitions>
+                        <!-- Ngày đầu đầu thống kê -->
+                        <WrapPanel Grid.Row="0" Margin="0,10,0,0"
+                               HorizontalAlignment="Center">
+                            <TextBox x:Name="start" IsEnabled="False"
+                                 materialDesign:HintAssist.Hint="Ngày bắt đầu thống kê"                             
+                                 FontSize="20" Height="50" Width="300"/>
+                            <materialDesign:PopupBox x:Name="ngayBDThongKe"
+                                                PlacementMode="BottomAndAlignRightEdges" StaysOpen="False"
+                                                Closed="ngayBDThongKe_Closed">
+                                <materialDesign:PopupBox.ToggleContent>
+                                    <materialDesign:PackIcon Kind="Calendar" Foreground="Black"                                                                 
+                                                 Height="40" Width="40"/>
+                                </materialDesign:PopupBox.ToggleContent>
+                                <Calendar x:Name="StartCalendar" Grid.Row="0"/>
+                            </materialDesign:PopupBox>
+                        </WrapPanel>
+
+                        <!-- Ngày kết thúc thống kê -->
+                        <WrapPanel Grid.Row="1"
+                               HorizontalAlignment="Center">
+                            <TextBox x:Name="end" IsEnabled="False"
+                                 materialDesign:HintAssist.Hint="Ngày kết thúc thống kê"                             
+                                 FontSize="20" Height="50" Width="300"/>
+                            <materialDesign:PopupBox x:Name="ngayKTThongKe"
+                                                PlacementMode="BottomAndAlignRightEdges" StaysOpen="False"
+                                                Closed="ngayKTThongKe_Closed">
+                                <materialDesign:PopupBox.ToggleContent>
+                                    <materialDesign:PackIcon Kind="Calendar" Foreground="Black"
+                                                 Height="40" Width="40"/>
+                                </materialDesign:PopupBox.ToggleContent>
+                                <Calendar x:Name="EndCalendar" Grid.Row="0"/>
+                            </materialDesign:PopupBox>
+                        </WrapPanel>
+                    </Grid>
+                </Border>
+
+            </Grid>
+        </Grid>
+
+        <!-- Biểu đồ thời điểm -->
+        <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+              x:Name="Thong_ke_thoi_diem" Visibility="Hidden"             
+              Margin="20,200,20,20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <!-- Thu -->
+            <charting:Chart  x:Name="Bieu_do_thu" Grid.Column="0"
+                             
+                             HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                             Title="Biểu đồ tròn thể hiện doanh thu">
+                <charting:Chart.Series>
+                    <charting:PieSeries x:Name="Bieu_do_tron_thu"
+                                        Title="USD"
+                                        IndependentValuePath="tenSP"                                      
+                                        DependentValuePath="doanhThu"/>
+                </charting:Chart.Series>                
+            </charting:Chart>            
+            <WrapPanel Grid.Column="0" Margin="10,70,0,0">
+                <Label Content="Tổng thu: " FontSize="20"/>
+                <TextBlock x:Name="txtBlckTongThu" FontSize="20" Margin="0,5,0,0"/>
+            </WrapPanel>
+            <!-- Xuất -->
+            <Grid Grid.Column="1">
+                <WrapPanel Grid.Column="0" Margin="10,20,0,0">
+                    <Label Content="Tổng xuất: " FontSize="20"/>
+                    <TextBlock x:Name="txtBlckTongXuat" FontSize="20" Margin="0,5,0,0"/>
+                </WrapPanel>
+                <DataGrid x:Name="dataGridImport"            
+                          HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                          Margin="10,70,10,30" CanUserSortColumns="True"
+                          CanUserAddRows="False" AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+
+                        <!-- Tên sản phẩm -->
+                        <DataGridTextColumn Binding="{Binding tenSP}" Header="Tên sản phẩm"
+                                    Width="150"  IsReadOnly="True"
+                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
+
+                        <!-- Loại sản phẩm -->
+                        <DataGridTextColumn Width="110"
+                                    Binding="{Binding maLoai}" Header="Loại sản phẩm" IsReadOnly="True"                              
+                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
+
+                        <!-- Số lượng -->
+                        <DataGridTextColumn Width="80"
+                                    Binding="{Binding soLuong}" Header="Số lượng"  IsReadOnly="True"      
+                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
+
+                        <!-- Đơn giá -->
+                        <DataGridTextColumn Width="130"
+                                    Binding="{Binding doanhThu}" Header="Thành tiền ( USD )"  IsReadOnly="True"                                
+                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
+
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </Grid>
+        
+        <!-- Biểu đồ khoảng thời gian -->
+        <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch"              
+              x:Name="Thong_ke_thoi_gian" Visibility="Hidden"             
+              Margin="20,200,20,20">
+            <!-- Thu -->
+            <charting:Chart  x:Name="Bieu_do_doanh_thu" Grid.Column="0" LegendTitle="USD"                             
+                             HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                             Title="Biểu đồ đường thể hiện doanh thu">
+                <charting:Chart.Series>
+                    <charting:LineSeries Title="Tiền thu vào ( USD )"                                           
+                                         x:Name="Bieu_do_duong_doanh_thu"
+                                         IndependentValueBinding="{Binding Path=Key}"                                       
+                        DependentValueBinding="{Binding Path=Value}"/>
+                    <charting:LineSeries Title=" Tiền xuất ra ( USD )"                                         
+                                         x:Name="Bieu_do_duong_doanh_xuat"
+                                         IndependentValueBinding="{Binding Path=Key}"                                       
+                        DependentValueBinding="{Binding Path=Value}"/>
+                </charting:Chart.Series>
+            </charting:Chart>
+        </Grid>
+    </Grid>
+</UserControl>
